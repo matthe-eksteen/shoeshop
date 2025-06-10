@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cart - ShoeStore</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 0; background: #f8f8f8; }
+        header { background: #222; color: #fff; padding: 1rem 2rem; display: flex; align-items: center; justify-content: space-between; }
+        .logo { font-size: 1.5rem; font-weight: bold; }
+        nav a { color: #fff; margin-left: 1.5rem; text-decoration: none; font-weight: 500; }
+        .cart-section { max-width: 700px; margin: 3rem auto; background: #fff; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.07); padding: 2rem; }
+        .cart-section h1 { font-size: 2rem; margin-bottom: 1.5rem; }
+        .cart-items { margin-bottom: 2rem; }
+        .cart-item { display: flex; align-items: center; gap: 1.5rem; margin-bottom: 1.5rem; border-bottom: 1px solid #eee; padding-bottom: 1rem; }
+        .cart-item img { width: 80px; height: auto; border-radius: 6px; }
+        .cart-item-details { flex: 1; }
+        .cart-item-title { font-size: 1.1rem; font-weight: bold; margin-bottom: 0.3rem; }
+        .cart-item-desc { color: #666; font-size: 0.95rem; }
+        .empty-cart { color: #888; text-align: center; margin: 2rem 0; }
+        .checkout-btn { background: #222; color: #fff; border: none; padding: 0.75rem 2rem; border-radius: 4px; cursor: pointer; font-size: 1rem; }
+        footer { background: #222; color: #fff; text-align: center; padding: 1rem 0; margin-top: 2rem; }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">ShoeStore</div>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="products.html">Products</a>
+            <a href="about.html">About</a>
+            <a href="contact.html">Contact</a>
+            <a href="cart.html">Cart</a>
+        </nav>
+    </header>
+    <section class="cart-section">
+        <h1>Your Cart</h1>
+        <div class="cart-items" id="cart-items"></div>
+        <button class="checkout-btn" id="checkout-btn">Checkout</button>
+    </section>
+    <script>
+        // Display cart items from localStorage and allow removal
+        function renderCart() {
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+            const cartItemsDiv = document.getElementById('cart-items');
+            cartItemsDiv.innerHTML = '';
+            if (cart.length === 0) {
+                cartItemsDiv.innerHTML = '<div class="empty-cart">Your cart is empty.</div>';
+                document.getElementById('checkout-btn').style.display = 'none';
+                return;
+            }
+            cart.forEach((item, idx) => {
+                const itemDiv = document.createElement('div');
+                itemDiv.className = 'cart-item';
+                itemDiv.innerHTML = `
+                    <img src="${item.img}" alt="${item.name}">
+                    <div class="cart-item-details">
+                        <div class="cart-item-title">${item.name}</div>
+                        <div class="cart-item-desc">${item.desc}</div>
+                    </div>
+                    <button class="remove-btn" data-idx="${idx}" style="background:#e74c3c;color:#fff;border:none;padding:0.5rem 1rem;border-radius:4px;cursor:pointer;">Remove</button>
+                `;
+                cartItemsDiv.appendChild(itemDiv);
+            });
+            document.getElementById('checkout-btn').style.display = 'inline-block';
+            // Add event listeners for remove buttons
+            document.querySelectorAll('.remove-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const idx = parseInt(btn.getAttribute('data-idx'));
+                    cart.splice(idx, 1);
+                    localStorage.setItem('cart', JSON.stringify(cart));
+                    renderCart();
+                });
+            });
+        }
+        document.addEventListener('DOMContentLoaded', renderCart);
+        document.getElementById('checkout-btn').addEventListener('click', function() {
+            window.location.href = 'payment.html';
+        });
+    </script>
+    <footer>
+        &copy; 2025 ShoeStore. All rights reserved.
+    </footer>
+</body>
+</html>

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ShoeStore - Online Shoes</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 0; background: #0f0f18; }
+        header { background: #fff; color: #2b2929; padding: 1rem 2rem; display: flex; align-items: center; justify-content: space-between; }
+        .logo { font-size: 1.5rem; font-weight: bolder; }
+        nav a { color: #222; margin-left: 1.5rem; text-decoration: none; font-weight: 500; }
+        .hero { background: #e0e0e0; padding: 3rem 2rem; text-align: center; }
+        .hero h1 { font-size: 2.5rem; margin-bottom: 1rem; }
+        .hero p { font-size: 1.2rem; margin-bottom: 2rem; }
+        .hero button { background: #222; color: #fff; border: none; padding: 0.75rem 2rem; font-size: 1rem; border-radius: 4px; cursor: pointer; }
+        .products { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 2rem; padding: 2rem; max-width: 1100px; margin: 0 auto; }
+        .product { background: #fff; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.07); padding: 1.5rem; text-align: center; }
+        .product img { width: 100%; max-width: 180px; height: auto; border-radius: 6px; }
+        .product h2 { font-size: 1.1rem; margin: 1rem 0 0.5rem; }
+        .product p { color: #666; font-size: 0.95rem; margin-bottom: 1rem; }
+        .product button { background: #222; color: #fff; border: none; padding: 0.5rem 1.5rem; border-radius: 4px; cursor: pointer; }
+        footer { background: #222; color: #fff; text-align: center; padding: 1rem 0; margin-top: 2rem; position: relative; }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">ShoeStore</div>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="products.html">Products</a>
+            <a href="about.html">About</a>
+            <a href="contact.html">Contact</a>
+            <a href="cart.html">Cart</a>
+            <a href="comments.html">Comments</a>
+        </nav>
+    </header>
+    <section class="hero">
+        <h1>Step Into Style</h1>
+        <p>Discover the latest trends in footwear. Shop our exclusive collection of shoes for every occasion.</p>
+        <button>Shop Now</button>
+    </section>
+    <section class="products" id="products">
+        <div class="product">
+            <img src="https://images-wp.stockx.com/news/wp-content/uploads/2022/08/blog-hero-twitter-square-1-1200x1200.jpg" alt="Running Shoes">
+            <h2>Running Shoes</h2>
+            <p>Lightweight shoes designed for performance and speed.</p>
+            <button class="add-to-cart">Add to Cart</button>
+        </div>
+        <div class="product">
+            <img src="https://d1nymbkeomeoqg.cloudfront.net/photos/28/73/408849_7358_XXL.jpg" alt="Comfy Shoes">
+            <h2>Comfy Shoes</h2>
+            <p>The best shoes out there</p>
+            <button class="add-to-cart">Add to Cart</button>
+        </div>
+        <div class="product">
+            <img src="https://images.unsplash.com/photo-1517260911205-8a3bfa7b3c61?auto=format&fit=crop&w=400&q=80" alt="Classic Sneakers">
+            <h2>Classic Sneakers</h2>
+            <p>Comfortable and stylish sneakers for everyday wear.</p>
+            <button class="add-to-cart">Add to Cart</button>
+        </div>
+    </section>
+    <script>
+        // Simple Add to Cart functionality using localStorage
+        document.addEventListener('DOMContentLoaded', function() {
+            const addToCartButtons = document.querySelectorAll('button.add-to-cart');
+            addToCartButtons.forEach((btn) => {
+                btn.addEventListener('click', function() {
+                    const product = btn.closest('.product');
+                    const name = product.querySelector('h2').innerText;
+                    const img = product.querySelector('img').src;
+                    const desc = product.querySelector('p').innerText;
+                    const cart = JSON.parse(localStorage.getItem('cart')) || [];
+                    cart.push({ name, img, desc });
+                    localStorage.setItem('cart', JSON.stringify(cart));
+                    alert(name + ' added to cart!');
+                });
+            });
+        });
+    </script>
+    <blockquote style="text-align: center; margin: 2rem 0; font-style: italic; color: #555;">
+        "The best shoes out there"
+    </blockquote>
+    <footer style="position: relative;">
+        &copy; 2025 ShoeStore. All rights reserved.<br>
+        Have a lovely day!
+        <a href="payment.html" style="color: #fff; text-decoration: underline; position: absolute; right: 2rem; top: 1rem;">
+            <span style="vertical-align: middle;">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 6px;"><rect x="2" y="5" width="20" height="14" rx="2" ry="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg>
+                Payment
+            </span>
+        </a>
+    </footer>
+</body>
+</html>

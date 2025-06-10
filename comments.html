@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comments - ShoeStore</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 0; background: #f8f8f8; }
+        header { background: #222; color: #fff; padding: 1rem 2rem; display: flex; align-items: center; justify-content: space-between; }
+        .logo { font-size: 1.5rem; font-weight: bold; }
+        nav a { color: #fff; margin-left: 1.5rem; text-decoration: none; font-weight: 500; }
+        .comments-section { max-width: 600px; margin: 3rem auto; background: #fff; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.07); padding: 2rem; }
+        .comments-section h1 { font-size: 2rem; margin-bottom: 1.5rem; }
+        .comment { margin-bottom: 1.5rem; padding-bottom: 1rem; border-bottom: 1px solid #eee; }
+        .comment p { margin-bottom: 0.5rem; }
+        footer { background: #222; color: #fff; text-align: center; padding: 1rem 0; margin-top: 2rem; }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">ShoeStore</div>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="products.html">Products</a>
+            <a href="about.html">About</a>
+            <a href="contact.html">Contact</a>
+            <a href="cart.html">Cart</a>
+            <a href="comments.html">Comments</a>
+        </nav>
+    </header>
+    <section class="comments-section">
+        <h1>Comments</h1>
+        <form id="commentForm">
+            <input type="text" id="commentInput" placeholder="Leave a comment" required>
+            <button type="submit">Submit</button>
+        </form>
+        <form id="ratingForm">
+            <input type="number" id="ratingInput" min="1" max="10" placeholder="Rate 1-10" required>
+            <button type="submit">Rate</button>
+        </form>
+        <div id="commentsList"></div>
+        <div id="ratingsList"></div>
+    </section>
+    <script>
+        // Handle comment submission
+        document.getElementById('commentForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const comment = document.getElementById('commentInput').value.trim();
+            if (comment) {
+                const commentsList = document.getElementById('commentsList');
+                const p = document.createElement('p');
+                p.textContent = comment;
+                commentsList.appendChild(p);
+                document.getElementById('commentInput').value = '';
+            }
+        });
+        // Handle rating submission
+        document.getElementById('ratingForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const rating = document.getElementById('ratingInput').value;
+            if (rating) {
+                const ratingsList = document.getElementById('ratingsList');
+                const p = document.createElement('p');
+                p.textContent = `Rating: ${rating}/10`;
+                ratingsList.appendChild(p);
+                document.getElementById('ratingInput').value = '';
+            }
+        });
+    </script>
+    <footer>
+        &copy; 2025 ShoeStore. All rights reserved.
+    </footer>
+</body>
+</html>
+

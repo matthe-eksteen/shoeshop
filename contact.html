@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact - ShoeStore</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 0; background: #f8f8f8; }
+        header { background: #222; color: #fff; padding: 1rem 2rem; display: flex; align-items: center; justify-content: space-between; }
+        .logo { font-size: 1.5rem; font-weight: bold; }
+        nav a { color: #fff; margin-left: 1.5rem; text-decoration: none; font-weight: 500; }
+        .contact-section { max-width: 600px; margin: 3rem auto; background: #fff; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.07); padding: 2rem; }
+        .contact-section h1 { font-size: 2rem; margin-bottom: 1rem; }
+        .contact-section form { display: flex; flex-direction: column; gap: 1rem; }
+        .contact-section input, .contact-section textarea { padding: 0.75rem; border-radius: 4px; border: 1px solid #ccc; width: 100%; }
+        .contact-section button { background: #222; color: #fff; border: none; padding: 0.75rem 1.5rem; border-radius: 4px; cursor: pointer; }
+        footer { background: #222; color: #fff; text-align: center; padding: 1rem 0; margin-top: 2rem; }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">ShoeStore</div>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="products.html">Products</a>
+            <a href="about.html">About</a>
+            <a href="contact.html">Contact</a>
+            <a href="cart.html">Cart</a>
+        </nav>
+    </header>
+    <section class="contact-section">
+        <h1 style="text-decoration: underline; color: black;">If there are any problems, please contact us</h1>
+        <form>
+            <h2>Email Us</h2>
+            <input type="email" placeholder="Your Email" required>
+            <input type="text" placeholder="Subject" required>
+            <textarea placeholder="Your comments" rows="4" required></textarea>
+            <button type="submit">Send Message</button>
+        </form>
+    </section>
+    <footer>
+        &copy; 2025 ShoeStore. All rights reserved.
+    </footer>
+</body>
+</html>
+
